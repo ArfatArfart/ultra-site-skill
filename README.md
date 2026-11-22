@@ -29,6 +29,7 @@ ultra-site/
   references/stage-architecture.md  scroll to shot mapping, morph field, forge dissolve, Earth
   references/semantic-motion.md     32 word effects with the reason for each
   references/deploy.md              Vite base, Pages workflow, gh commands
+  references/premium-pass.md        product studio hero, post FX, material type, usable 3D UI
   scripts/fetch_polyhaven.py        download models and HDRIs
   scripts/optimize_models.sh        meshopt + WebP compression
   scripts/blender_thumbs.py         headless thumbnails to learn model orientation

@@ -56,6 +56,7 @@ import each glTF, frame its bounding box, render 512 px PNGs. glTF +Z is the fro
 
 `https://cdn.jsdelivr.net/gh/mrdoob/three.js@r170/examples/textures/planets/` →
 `earth_atmos_2048.jpg`, `earth_lights_2048.png`, `earth_specular_2048.jpg`, `earth_clouds_1024.png`.
+The clouds PNG is palette based with the clouds in alpha: convert it to a grayscale density map (luminance × alpha) before sampling `.r`.
 
 ## 6. Logos
 

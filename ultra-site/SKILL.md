@@ -24,8 +24,9 @@ This skill builds a site that looks like a big company's flagship launch page, u
 4. **Build the stage.** Follow `references/stage-architecture.md`: morph field sampled from the real meshes, forge dissolve patched into the real PBR materials, procedural shots for sections without an object, embers, sparks, an Earth with the real subsolar point.
 5. **Build the sections.** Hero (scan shader on the hero object, HUD with real mesh stats), tagline reveal, three service chapters (each with a real object and an interactive proof: live canvas screen, draggable phone demo, terminal of real requests), pinned process with impacts, live work grid, draggable tech sphere, live metrics, FAQ, footer hero with globe and heat type.
 6. **Semantic words.** Use the catalog in `references/semantic-motion.md`. Every heading gets at least two effects; never reuse an effect within one heading.
-7. **QA in the browser pane.** Check desktop and the mobile preset, read console errors, confirm no horizontal overflow at 375px. A hidden browser pane throttles requestAnimationFrame, so slow intros there are not bugs.
-8. **Deploy.** See `references/deploy.md`. Create the repo, enable Pages with `build_type=workflow`, push, wait for the run, open the live URL and check the console there too.
+7. **Premium pass.** Before calling it done, apply `references/premium-pass.md`: product studio hero, cinematic post processing, damping, material typography, usable 3D UI, cursor lit glass. This is the difference users notice.
+8. **QA in the browser pane.** Check desktop and the mobile preset, read console errors, confirm no horizontal overflow at 375px. A hidden browser pane throttles requestAnimationFrame, so slow intros there are not bugs.
+9. **Deploy.** See `references/deploy.md`. Create the repo, enable Pages with `build_type=workflow`, push, wait for the run, open the live URL and check the console there too.
 
 ## Quality bar
 
