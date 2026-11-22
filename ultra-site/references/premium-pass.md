@@ -59,3 +59,28 @@ Cursor lit hairline borders (`mask-composite: exclude` ring with a radial gradie
 lit from above with an inner highlight, themes chosen by position every frame (pinned sections break
 toggle based triggers when users jump), `align-content: normal` on tall sticky containers (Chrome now applies
 `align-content` to block boxes).
+
+## 7. The fluid hero (what finally landed with the client)
+
+When the client shows a reference, extract frames with `ffmpeg -i ref.mp4 -vf "fps=4,scale=512:-1,tile=4x4" -frames:v 1 sheet.jpg`
+and read the contact sheet before designing. The winning pattern:
+
+- **Intro as a story, not a spinner.** One spark with a ring of real downloaded bytes; then a cross of dots, an
+  iridescent dot field opening from the centre, and a diagonal metaball wave that melts into the hero colour.
+  Canvas 2D is enough; finish on exactly the hero background so the hand off is seamless.
+- **One bold flat colour** that means something for the brand (forge → molten orange), black type, black ink.
+- **Wordmark inside WebGL.** Draw the giant word plus a handwritten script word (for example Yellowtail) into a
+  canvas texture on a full screen quad, so the ink can flow over the letters. Render a background scene
+  (aura, wordmark, ink) first, then the 3D scene with `clear = false, clearDepth = true`.
+- **Real fluid, not a video.** Stable fluids on the GPU: splat, curl, vorticity, divergence, ~18 Jacobi pressure
+  iterations, gradient subtract, advect velocity and dye. Velocity 128 px, dye 1024 px (512 on phones), half
+  float targets. Shade the dye as glossy ink: alpha from density, normals from its gradient, a tight specular.
+  The cursor splats with its real velocity; the object sheds swirling splats around its projected silhouette.
+  Scale emission down on phones or the ink swallows the layout.
+- **A real, licensed hero object.** Search GitHub for models already used in open tutorials and read the glTF
+  `asset.extras` for author and licence (CC BY needs visible credit). Hide trademark logos, convert to meshopt,
+  swap the screen material for a canvas, convert body materials to `MeshPhysicalMaterial` with iridescence for
+  holographic chrome.
+- **Real content on screens.** Capture full length mobile pages through the DevTools protocol
+  (`Emulation.setDeviceMetricsOverride` 390×844, scroll once to trigger reveals, `captureBeyondViewport`), then
+  scroll them inside a Safari style canvas with human pacing: hold, flick with momentum, settle, swipe tabs.
