@@ -84,3 +84,30 @@ and read the contact sheet before designing. The winning pattern:
 - **Real content on screens.** Capture full length mobile pages through the DevTools protocol
   (`Emulation.setDeviceMetricsOverride` 390×844, scroll once to trigger reveals, `captureBeyondViewport`), then
   scroll them inside a Safari style canvas with human pacing: hold, flick with momentum, settle, swipe tabs.
+
+## 8. The second edition under the ink (v4)
+
+The client's next step after the fluid hero: whatever the ink touches should show an
+alternate version of the scene, not just a dark stain.
+
+- **Reveal, don't paint.** Feed the fluid dye texture to every layer that should change.
+  The wordmark shader mixes black to white letters where `dye > threshold`; the ink itself
+  stays black, so the white letters read as "inside" the ink.
+- **Only the content changes.** On a device, patch only the screen material (`onBeforeCompile`,
+  replace `#include <emissivemap_fragment>`). Sample the dye with `gl_FragCoord.xy / drawingBufferSize`
+  so the screen and the 2D fluid line up exactly. Never recolour the device body.
+- **Pixel by pixel.** Quantise screen UVs into cells (about 64 columns). Each cell gets a hash, and
+  its flip threshold is `0.1 + hash * 0.3`, so cells switch one at a time at the ink's edge
+  instead of fading as a block. The alternate look is a duotone remap of the same page.
+- **Site changes as VFX.** Keep the previous frame in a second canvas texture. A front sweeps
+  down the screen with a jittered edge per cell and a hot scan band; above the front show the new
+  page, below it the old one.
+- **Chain shader patches.** If the material already has a dissolve patch, call
+  `material.userData.extraPatch(shader)` from inside it and give it a distinct
+  `customProgramCacheKey`. Rename any clashing local variables (`band` became `sband`).
+- **One site, two screens.** A laptop behind a smaller phone, both driven by one `Pacer`
+  (hold, flick, glide back to top), sells responsive design better than any claim. Use a
+  real MIT or CC laptop model, replace its screen material, and set `flipY = false` on
+  canvas textures that land upside down.
+- **Size by feel.** The client asked for the hero phone at 70% of the first size; leave room for the
+  wordmark to read around it.
